@@ -1,25 +1,71 @@
 //1:
 //Write a function compareToTen that takes a number, num as an argument and returns a Promise that tests if the value of num is less than or greater than the value 10.
-// if number is greater or equal it should resolve  with a string and log for example, if num = 20 it should say '20 is greater than or equal to 10, resolved!'
-// if num is less than 10 then it should reject and log for example '5 is less than 10, error!'
-// create a variable randomNum that creates a random number between 1 and 20
-// use it as your argument to invoke your compareToTen function
+let compareToTen = (num) => {
+  return new Promise((resolve, reject) => {
+
+    // if number is greater or equal it should resolve  with a string and log for example, if num = 20 it should say '20 is greater than or equal to 10, resolved!'
+    let baseNumber = 10
+    if (num >= baseNumber) {
+      resolve(`${num} is greater than or equal to 10`)
+    }
+
+    // if num is less than 10 then it should reject and log for example '5 is less than 10, error!'
+    else {
+      reject(`${num} is less than 10, error!`)
+    }
+
+    // create a variable randomNum that creates a random number between 1 and 20
+    // use it as your argument to invoke your compareToTen function
+    const randomNum = Math.floor((Math.random() * 20) + 1)
+
+  })
+}
 
 //2.
 // create a global variable called order. It will hold a string with whatever drink you want to order, for example, a 'Slurpy'
+const order = 'slurpy'
 //create a promise called drink
-// inside your promise:
-// first log 'I'll be right back with your <order variable>'.
-// next create another boolean variable, orderCannotBeFilled. Set it to false
-// when order is orderCannotBeFilled is true, promise should reject after 2 seconds with a message,
-// 'Sorry we are all out of <whatever the order is>' (not hard coded order)
-// otherwise resolve the order after 4 seconds saying 'Server returns: 'Here is your <whatever the order is>'
+let drink = new Promise((resolve, reject) => {
+
+  // inside your promise:
+  // first log 'I'll be right back with your <order variable>'.
+  console.log(`I'll be right back with your ${order}`);
+
+  // next create another boolean variable, orderCannotBeFilled. Set it to false
+  const orderCannotBeFilled = false;
+
+  // when order is orderCannotBeFilled is true, promise should reject after 2 seconds with a message,
+  // 'Sorry we are all out of <whatever the order is>' (not hard coded order)
+  if (orderCannotBeFilled) {
+    setTimeout(() => {
+      reject(`Sorry we are all out of ${order}`);
+    }, 2000);
+  }
+  // otherwise resolve the order after 4 seconds saying 'Server returns: 'Here is your <whatever the order is>'
+  else {
+    setTimeout(() => {
+      resolve(`Server returns: 'Here is your ${order}'`)
+    }, 4000)
+  }
+
+})
 
 // Now consume the promise
-// When the order resolves, it should log 'Server Returns:' and the resolve message.
+drink.then((orderInfo) => {
+
+  // When the order resolves, it should log 'Server Returns:' and the resolve message.
+  console.log(orderInfo)
+})
 // Handle the catch. It should log 'Sorry we are all out of <whatever the order is>'
+.catch((err) => {
+  // catches any error either from reject OR from error in .then
+  console.log(`${err}`);
+});
 
 // Test by changing the value of orderCannotBeFilled between true and false
+
+
+
 
 // SAMPLE OUTPUT:
 // resolve out put should be
@@ -30,10 +76,19 @@
 // reject output in terminal should be
 // Server says: "I'll be right back with your Slurpy"
 // Sever returns: "Sorry, We are all out of Slurpy"
+//================================================================================================================================================================================================================//
+//================================================================================================================================================================================================================//
 
 //3.CHAIN
 //Write two separate functions that return promises
 // The first function, makeAllCaps(), will take in an array of words and capitalize them.
+
+
+const makeAllCaps = (arrayOfWords)=>{
+  arrayOfWords.forEach(word => console.log(word.toUpperCase()))
+}
+
+
 //the second function, sortWords(), will sort the words in alphabetical order.
 //If the array contains anything but strings, it should throw an error.
 // Test the functions separately
@@ -112,6 +167,12 @@ const json = {
 
 // 5. Based on given athlets array
 //a.  Write a function called playerFunction that returns a promise which copies the array into a new array called 'playerArr'.
+// const playerFunction = (array)=>{
+//   return new Promise((resolve, reject)=> {
+//     console.log(array)
+//   })
+// }
+// console.log(playerFunction(athletes))
 // Make sure your function is re-useable so no hard coded values.
 //b. Now invoke the function
 // loop through the function using array method and Place a key value pair into each object based on the player's position.
