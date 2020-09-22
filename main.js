@@ -83,50 +83,50 @@
 // reject output in terminal should be
 // Server says: "I'll be right back with your Slurpy"
 // Sever returns: "Sorry, We are all out of Slurpy"
-//================================================================================================================================================================================================================//
-//================================================================================================================================================================================================================//
-//================================================================================================================================================================================================================//
-//================================================================================================================================================================================================================//
 
 
-//3.CHAIN
+//================================================================================================================================================================================================================//
+//================================================================================================================================================================================================================//
+//================================================================================================================================================================================================================//
+//================================================================================================================================================================================================================//
+/*************
+ * //3.CHAIN *
+ *************/
 // Write two separate functions that return promises
-// // The first function, makeAllCaps(), will take in an array of words and capitalize them.
-// const makeAllCaps = (wordsArray)=>{
-//   let upperCasedWords = []
-//   wordsArray.forEach(word => upperCasedWords.push(word.toUpperCase()))
-//   return upperCasedWords
-// }
-// //the second function, sortWords(), will sort the words in alphabetical order.
-// const sortWords = (givenArray)=> {
-//   // console.log(typeof(givenArray))
-//   givenArray.map((value, index, array)=>{
-//     typeof(value) !== 'string' ?
-//     console.log(`error`):
-//     array.sort()
+// The first function, makeAllCaps(), will take in an array of words and capitalize them.
+const makeAllCaps = (wordsArray)=>{
+  let upperCasedWords = []
+  wordsArray.forEach(word => upperCasedWords.push(word.toUpperCase()))
+  return upperCasedWords
+}
+//the second function, sortWords(), will sort the words in alphabetical order.
+const sortWords = (givenArray)=> {
+  // console.log(typeof(givenArray))
+  let sortedWords = []
+  givenArray.map((value, index, array)=>{
+    // If the array contains anything but strings, it should throw an error.
+    if(array.includes(typeof(value) !== 'string')){
+      // console.log(array)
+    // if(typeof(value) !== 'string'){
+      throw 'Error Not All Items are strings'
+    }
+    else {
+      sortedWords.push(value)
+    }
+  })
+  return sortedWords.sort()
+
+}
 
 
-//   })
-//   // if(typeof(array) !== 'strings'){
-//   //   console.log('error')
-//   // }
-//   // else {
-
-//   //   return array.sort()
-//   // }
-
-// }
-
-
-//If the array contains anything but strings, it should throw an error.
 // Test the functions separately
 // Then test what happens if you chain the 2 functions on a successful array
 
-// const arrayOfWords = ['cucumber', 'tomatos', 'avocado']; //returns ['CUCUMBER','TOMATOES','AVOCADO']
-// const complicatedArray = ['cucumber', 44, true]; //returns "Error Not All Items are strings"
+const arrayOfWords = ['cucumber', 'tomatos', 'avocado']; //returns ['CUCUMBER','TOMATOES','AVOCADO']
+const complicatedArray = ['cucumber', 44, true]; //returns "Error Not All Items are strings"
 
-// console.log(makeAllCaps(arrayOfWords))
-// console.log(sortWords(arrayOfWords))
+console.log(makeAllCaps(arrayOfWords))
+console.log(sortWords(arrayOfWords))
 
 
 
