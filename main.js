@@ -92,41 +92,41 @@
 /*************
  * //3.CHAIN *
  *************/
-// Write two separate functions that return promises
-// The first function, makeAllCaps(), will take in an array of words and capitalize them.
-const makeAllCaps = (wordsArray)=>{
-  let upperCasedWords = []
-  wordsArray.forEach(word => upperCasedWords.push(word.toUpperCase()))
-  return upperCasedWords
-}
-//the second function, sortWords(), will sort the words in alphabetical order.
-const sortWords = (givenArray)=> {
-  // console.log(typeof(givenArray))
-  let sortedWords = []
-  givenArray.map((value, index, array)=>{
-    // If the array contains anything but strings, it should throw an error.
-    if(array.includes(typeof(value) !== 'string')){
-      // console.log(array)
-    // if(typeof(value) !== 'string'){
-      throw 'Error Not All Items are strings'
-    }
-    else {
-      sortedWords.push(value)
-    }
-  })
-  return sortedWords.sort()
+// // Write two separate functions that return promises
+// // The first function, makeAllCaps(), will take in an array of words and capitalize them.
+// const makeAllCaps = (wordsArray)=>{
+//   let upperCasedWords = []
+//   wordsArray.forEach(word => upperCasedWords.push(word.toUpperCase()))
+//   return upperCasedWords
+// }
+// //the second function, sortWords(), will sort the words in alphabetical order.
+// const sortWords = (givenArray)=> {
+//   // console.log(typeof(givenArray))
+//   let sortedWords = []
+//   givenArray.map((value, index, array)=>{
+//     // If the array contains anything but strings, it should throw an error.
+//     if(array.includes(typeof(value) !== 'string')){
+//       // console.log(array)
+//     // if(typeof(value) !== 'string'){
+//       throw 'Error Not All Items are strings'
+//     }
+//     else {
+//       sortedWords.push(value)
+//     }
+//   })
+//   return sortedWords.sort()
 
-}
+// }
 
 
-// Test the functions separately
-// Then test what happens if you chain the 2 functions on a successful array
+// // Test the functions separately
+// // Then test what happens if you chain the 2 functions on a successful array
 
-const arrayOfWords = ['cucumber', 'tomatos', 'avocado']; //returns ['CUCUMBER','TOMATOES','AVOCADO']
-const complicatedArray = ['cucumber', 44, true]; //returns "Error Not All Items are strings"
+// const arrayOfWords = ['cucumber', 'tomatos', 'avocado']; //returns ['CUCUMBER','TOMATOES','AVOCADO']
+// const complicatedArray = ['cucumber', 44, true]; //returns "Error Not All Items are strings"
 
-console.log(makeAllCaps(arrayOfWords))
-console.log(sortWords(arrayOfWords))
+// console.log(makeAllCaps(arrayOfWords))
+// console.log(sortWords(arrayOfWords))
 
 
 
@@ -196,10 +196,10 @@ console.log(sortWords(arrayOfWords))
 //     },
 //   ],
 // };
-// // // a. Create a variable, totalSales that creates a promise.
-// // // b. Within the promise create a reject handler 
-// // // for errors and a resolve handler that resolves 
-// // // a copy of the array that is inside the json object.  
+// // // // a. Create a variable, totalSales that creates a promise.
+// // // // b. Within the promise create a reject handler 
+// // // // for errors and a resolve handler that resolves 
+// // // // a copy of the array that is inside the json object.  
 // const totalSales = new Promise((resolve, reject) => {
 //   // reject(`error handler`)
 //   let data = json.data
@@ -283,37 +283,77 @@ let athletes = [
 
 // 5. Based on given athletes array
 // a.  Write a function called playerFunction that returns a promise which copies the array into a new array called 'playerArr'.
-// const playerFunction = (array)=>{
-//   return new Promise((resolve, reject)=> {
-//     const playerArr = [...array]
-//     resolve(playerArr)
-//   })
-// }
-// // Make sure your function is re-useable so no hard coded values.
-// //b. Now invoke the function
-// playerFunction(athletes)
-// .then((playerData)=> {
-
-//   // loop through the function using array method and Place a key value pair into each object based on the player's position.
-//   //If the position is guard then add sport:'basketball'
-//   // If the position is quarterback add sport:'football'
-//   // Use a ternary to solve this.
-//   // Note: There can only be two sports either football or basketball and only two positions guard and quarterback
-//   const result = playerData.filter( (player) =>{ 
-//     (player.position === 'guard') ? `yes`: `no no`  ;
-//     // console.log(player.position)})
-//   // console.log()
+const playerFunction = (array) => {
+  return new Promise((resolve, reject) => {
+    const playerArr = [...array]
 
 
-// })
+    resolve(playerArr)
+  })
 
-// //c.
-// // Log (console.log) the whole array with the sport added for each object. Preface the list with a 'Sport added: ' string.
-// // console.log('---------') to separate a section.
-// //d.
-// // In your next thenable, Console.log a string like the example below for each player:
-// // 'Tom Bradshaw plays football and is a quarterback for the Pittsburgh Steelers'
-// // Only choose the players who play football and use deconstruction and the ternary operator to complete this piece
-// //e. In the next thenable, console.log the original array to show it has not been mutated
-// //f. Be sure to include you Promise Error Handling using the catch
+}
+// Make sure your function is re-useable so no hard coded values.
+//b. Now invoke the function
+playerFunction(athletes)
+  .then((playerArr) => {
+    console.log(playerArr)
+
+    // loop through the function using array method and Place a key value pair into each object based on the player's position.
+    playerArr.map((value, index, array) => {
+
+      //destructure for easier handling of position value.position
+      const { name, position, team } = value
+
+      // Use a ternary to solve this.
+      position === 'guard'
+
+        //If the position is guard then add sport:'basketball'
+        ? value.sport = 'basketball'
+
+        // If the position is quarterback add sport:'football'
+        // Note: There can only be two sports either football or basketball and only two positions guard and quarterback
+        : value.sport = 'football'
+
+
+      //c.
+      // Log (console.log) the whole array with the sport added for each object. 
+      console.log(playerArr)
+
+    })
+    console
+    return (playerArr)
+
+  })
+
+
+  // Preface the list with a 'Sport added: ' string.
+  // console.log('---------') to separate a section.
+  //d.
+
+
+  // In your next thenable, Console.log a string like the example below for each player:
+  // 'Tom Bradshaw plays football and is a quarterback for the Pittsburgh Steelers'
+  // Only choose the players who play football and use deconstruction and the ternary operator to complete this piece
+  .then((value) => {
+    value.map((mapValue) => {
+      const { name, position, team, sport } = mapValue
+      console.log(`${name} plays ${sport}`)
+
+    })
+    return value
+
+  })
+
+
+  //e. In the next thenable, console.log the original array to show it has not been mutated
+  .then((value) => {
+    console.log(athletes)
+  })
+  //f. Be sure to include you Promise Error Handling using the catch
+  .catch((err) => {
+console.log(err)
+  })
 // console.log(playerFunction(athletes))
+
+
+// console.log(athletes)
